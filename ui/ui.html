@@ -1,0 +1,2048 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <template id="ame-plugin-icon">
+      <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+      <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 6.90909C10.8999 5.50893 9.20406 4.10877 5.00119 4.00602C4.72513 3.99928 4.5 4.22351 4.5 4.49965C4.5 6.54813 4.5 14.3034 4.5 16.597C4.5 16.8731 4.72515 17.09 5.00114 17.099C9.20405 17.2364 10.8999 19.0998 12 20.5M12 6.90909C13.1001 5.50893 14.7959 4.10877 18.9988 4.00602C19.2749 3.99928 19.5 4.21847 19.5 4.49461C19.5 6.78447 19.5 14.3064 19.5 16.5963C19.5 16.8724 19.2749 17.09 18.9989 17.099C14.796 17.2364 13.1001 19.0998 12 20.5M12 6.90909L12 20.5" stroke="#000000" stroke-linejoin="round"/>
+      <path d="M19.2353 6H21.5C21.7761 6 22 6.22386 22 6.5V19.539C22 19.9436 21.5233 20.2124 21.1535 20.0481C20.3584 19.6948 19.0315 19.2632 17.2941 19.2632C14.3529 19.2632 12 21 12 21C12 21 9.64706 19.2632 6.70588 19.2632C4.96845 19.2632 3.64156 19.6948 2.84647 20.0481C2.47668 20.2124 2 19.9436 2 19.539V6.5C2 6.22386 2.22386 6 2.5 6H4.76471" stroke="#000000" stroke-linejoin="round"/>
+      </svg>
+    </template>
+    <style>
+      :root {
+        --bg-base:        #0f0f11;
+        --bg-elevated:    #16161a;
+        --bg-card:        #1a1a1f;
+        --bg-hover:       #202028;
+        --bg-active:      #25252e;
+        --bg-input:       #141418;
+        --text-primary:   #f0f0f5;
+        --text-secondary: #a0a0b0;
+        --text-tertiary:  #6b6b7a;
+        --text-muted:     #484855;
+        --text-disabled:  #3a3a45;
+        --accent:         #6366f1;
+        --accent-soft:    #818cf8;
+        --accent-dim:     rgba(99, 102, 241, 0.12);
+        --accent-glow:    rgba(99, 102, 241, 0.25);
+        --danger:         #ef4444;
+        --danger-soft:    #f87171;
+        --danger-dim:     rgba(239, 68, 68, 0.12);
+        --warning:        #f59e0b;
+        --warning-soft:   #fbbf24;
+        --warning-dim:    rgba(245, 158, 11, 0.12);
+        --success:        #22c55e;
+        --success-soft:   #4ade80;
+        --success-dim:    rgba(34, 197, 94, 0.12);
+        --chart-1: #6366f1;
+        --chart-2: #ec4899;
+        --chart-3: #22c55e;
+        --chart-4: #f59e0b;
+        --chart-5: #06b6d4;
+        --border:         rgba(255,255,255,0.06);
+        --border-strong:  rgba(255,255,255,0.10);
+        --border-focus:   rgba(99, 102, 241, 0.5);
+        --shadow-sm:  0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px var(--border);
+        --shadow-md:  0 4px 12px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
+        --shadow-lg:  0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+        --shadow-glow: 0 0 20px var(--accent-glow);
+        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 20px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-10: 40px;
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 14px;
+        --radius-xl: 18px;
+        --radius-full: 999px;
+        --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body {
+        font-family: var(--font-sans);
+        font-size: 13.5px;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background: var(--bg-base);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      button, input, select, textarea { font: inherit; color: inherit; }
+      svg text { font-family: var(--font-sans); }
+      .app { padding: var(--space-6) var(--space-6) var(--space-10); max-width: 1140px; margin: 0 auto; }
+
+      .hero {
+        display: flex; align-items: center; justify-content: space-between; gap: var(--space-5);
+        background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-5) var(--space-6);
+        margin-bottom: var(--space-6);
+        box-shadow: var(--shadow-md);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+      }
+      .hero-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+      .hero-sub { font-size: 12.5px; color: var(--text-tertiary); margin-top: var(--space-1); font-weight: 400; }
+      .hero-stats { display: flex; gap: var(--space-6); }
+      .stat { text-align: right; position: relative; }
+      .stat:not(:last-child)::after {
+        content: ''; position: absolute; right: calc(-1 * var(--space-3)); top: 50%; transform: translateY(-50%);
+        width: 1px; height: 24px; background: var(--border);
+      }
+      .stat-num { font-size: 22px; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; line-height: 1.2; }
+      .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-top: var(--space-1); font-weight: 600; }
+
+      .tabs { display: flex; gap: var(--space-1); margin-bottom: var(--space-6); background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-1); }
+      .tab { background: transparent; border: none; color: var(--text-tertiary); font-size: 12.5px; font-weight: 600; padding: var(--space-2) var(--space-4); cursor: pointer; border-radius: var(--radius-md); transition: all var(--transition-fast); position: relative; white-space: nowrap; }
+      .tab:hover { color: var(--text-secondary); background: rgba(255,255,255,0.03); }
+      .tab.active { color: var(--text-primary); background: var(--bg-card); box-shadow: var(--shadow-sm); }
+      .tab.active::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 2px; background: var(--accent); border-radius: var(--radius-full); }
+
+      .panel { display: none; animation: panelIn 280ms cubic-bezier(0.16, 1, 0.3, 1); }
+      .panel.active { display: block; }
+      @keyframes panelIn { from { opacity: 0; transform: translateY(8px) scale(0.995); } to { opacity: 1; transform: none; } }
+
+      .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-5); margin-bottom: var(--space-4); box-shadow: var(--shadow-sm); transition: box-shadow var(--transition-base), border-color var(--transition-base); }
+      .card:hover { box-shadow: var(--shadow-md); border-color: var(--border-strong); }
+      .card-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 700; margin-bottom: var(--space-4); display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+      .card-title .badge { font-size: 10.5px; text-transform: none; letter-spacing: normal; font-weight: 600; color: var(--text-tertiary); background: var(--bg-hover); border: 1px solid var(--border); border-radius: var(--radius-full); padding: 2px 10px; transition: all var(--transition-fast); }
+      .card-title .badge:hover { border-color: var(--border-strong); color: var(--text-secondary); }
+
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4); }
+
+      .bundle-quick-create { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); padding: var(--space-4); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+      .bundle-quick-copy { min-width: 0; }
+      .bundle-quick-title { color: var(--text-primary); font-size: 13px; font-weight: 700; }
+      .bundle-quick-copy p { margin: var(--space-1) 0 0; color: var(--text-tertiary); font-size: 11.5px; line-height: 1.5; }
+      .bundle-quick-form { display: flex; gap: var(--space-2); width: min(100%, 390px); flex-shrink: 0; }
+      .bundle-quick-form input { min-width: 0; flex: 1; }
+      .bundle-quick-form .btn { flex-shrink: 0; }
+      @media (max-width: 680px) { .bundle-quick-create { align-items: stretch; flex-direction: column; } .bundle-quick-form { width: 100%; } }
+
+      .field { display: flex; flex-direction: column; gap: var(--space-1); margin-bottom: var(--space-3); }
+      .field label { font-size: 11.5px; color: var(--text-tertiary); font-weight: 600; letter-spacing: 0.01em; }
+      input[type=text], textarea, input[type=file], select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); font-size: 13px; padding: var(--space-2) var(--space-3); transition: all var(--transition-fast); outline: none; }
+      input[type=text]::placeholder, textarea::placeholder { color: var(--text-disabled); }
+      input[type=text]:hover, textarea:hover, select:hover { border-color: var(--border-strong); }
+      input[type=text]:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim), 0 0 0 1px var(--accent); }
+      textarea { resize: vertical; min-height: 140px; line-height: 1.6; font-family: var(--font-sans); }
+      input[type=file] { padding: var(--space-2); cursor: pointer; }
+      input[type=file]::file-selector-button { background: var(--bg-hover); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-secondary); padding: var(--space-1) var(--space-3); margin-right: var(--space-3); font-size: 12px; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); }
+      input[type=file]::file-selector-button:hover { background: var(--bg-active); border-color: var(--border-strong); color: var(--text-primary); }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); background: var(--accent); color: #fff; border: none; border-radius: var(--radius-md); font-size: 13px; font-weight: 600; padding: var(--space-2) var(--space-4); cursor: pointer; transition: all var(--transition-fast); position: relative; overflow: hidden; white-space: nowrap; }
+      .btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%); opacity: 0; transition: opacity var(--transition-fast); }
+      .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px var(--accent-glow), 0 0 0 1px var(--accent); }
+      .btn:hover:not(:disabled)::after { opacity: 1; }
+      .btn:active:not(:disabled) { transform: translateY(0); box-shadow: none; }
+      .btn:disabled { opacity: 0.35; cursor: not-allowed; filter: grayscale(0.5); }
+      .btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); box-shadow: none; }
+      .btn.ghost::after { display: none; }
+      .btn.ghost:hover:not(:disabled) { background: var(--bg-hover); border-color: var(--border-strong); color: var(--text-primary); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+      .btn.danger { background: transparent; border: 1px solid var(--danger); color: var(--danger); box-shadow: none; }
+      .btn.danger::after { display: none; }
+      .btn.danger:hover:not(:disabled) { background: var(--danger-dim); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15); transform: translateY(-1px); }
+      .btn.ok { background: var(--success); color: #fff; }
+      .btn.ok:hover:not(:disabled) { box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25); }
+
+      .status { margin-top: var(--space-3); font-size: 12.5px; color: var(--text-tertiary); min-height: 20px; transition: all var(--transition-base); display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); background: transparent; }
+      .status.ok { color: var(--success-soft); background: var(--success-dim); }
+      .status.error { color: var(--danger-soft); background: var(--danger-dim); }
+      .status.warn { color: var(--warning-soft); background: var(--warning-dim); }
+
+      .confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; animation: fadeIn 150ms ease; }
+      .confirm-box { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: var(--space-6); max-width: 400px; width: 90%; font-size: 13.5px; line-height: 1.6; box-shadow: var(--shadow-lg); animation: modalIn 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+      @keyframes modalIn { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: none; } }
+      .confirm-box .msg { white-space: pre-line; margin-bottom: var(--space-5); color: var(--text-secondary); }
+      .confirm-box .msg strong { color: var(--text-primary); font-weight: 600; }
+      .confirm-box .actions { display: flex; justify-content: flex-end; gap: var(--space-2); }
+
+      .edit-box { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: var(--space-6); max-width: 720px; width: 92%; max-height: 88vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); animation: modalIn 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+      .edit-box h3 { margin: 0 0 var(--space-4) 0; font-size: 15px; color: var(--text-primary); }
+      .edit-box .edit-body { overflow-y: auto; padding-right: 4px; }
+      .edit-box textarea#edit-text { min-height: 320px; font-family: var(--font-mono, monospace); font-size: 12.5px; }
+      .edit-box .actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-4); }
+
+      .doc-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border); transition: all var(--transition-fast); border-radius: var(--radius-md); margin: 0 calc(-1 * var(--space-2)); }
+      .doc-row:last-child { border-bottom: none; }
+      .doc-row:hover { background: var(--bg-hover); }
+      .bundle-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px solid var(--border); }
+      .bundle-row:last-child { border-bottom: none; }
+      .bundle-row .bundle-name { font-weight: 600; font-size: 13px; color: var(--text-secondary); }
+      .bundle-row .bundle-actions { display: flex; gap: var(--space-1); flex-shrink: 0; }
+      .bundle-row .bundle-actions .btn { padding: var(--space-1) var(--space-3); font-size: 11.5px; }
+      .doc-title { font-weight: 600; font-size: 13.5px; color: var(--text-primary); letter-spacing: -0.01em; }
+      .doc-meta { font-size: 11.5px; color: var(--text-tertiary); margin-top: var(--space-1); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+      .doc-tag { display: inline-flex; align-items: center; font-size: 10px; color: var(--text-tertiary); background: var(--bg-hover); border: 1px solid var(--border); border-radius: var(--radius-full); padding: 1px 8px; margin-right: var(--space-1); font-weight: 500; transition: all var(--transition-fast); }
+      .doc-tag:hover { border-color: var(--border-strong); color: var(--text-secondary); }
+      .doc-bundle { display: inline-flex; align-items: center; font-size: 9.5px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-sm); margin-right: var(--space-2); text-transform: uppercase; letter-spacing: 0.06em; }
+      .empty { color: var(--text-muted); font-size: 13px; padding: var(--space-4) 0; text-align: center; font-style: italic; }
+
+      .search-row { display: flex; gap: var(--space-2); align-items: stretch; }
+      .search-row input { flex: 1; }
+
+      /* ===== RESULTADOS DE BÚSQUEDA EN LISTA ===== */
+      #search-results {
+        margin-top: var(--space-4);
+      }
+
+      .search-result-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-4);
+        padding: var(--space-4) var(--space-2);
+        border-bottom: 1px solid var(--border);
+        transition: background var(--transition-fast);
+      }
+
+      .search-result-row:last-child {
+        border-bottom: none;
+      }
+
+      .search-result-row:hover {
+        background: var(--bg-hover);
+        border-radius: var(--radius-md);
+        margin: 0 calc(-1 * var(--space-2));
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+      }
+
+      .search-result-left {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-3);
+        flex: 1;
+        min-width: 0;
+      }
+
+      .search-result-number {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-muted);
+        min-width: 28px;
+        flex-shrink: 0;
+        line-height: 1.4;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .search-result-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .search-result-title {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-primary);
+        letter-spacing: -0.01em;
+        margin-bottom: var(--space-2);
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        flex-wrap: wrap;
+      }
+
+      .search-result-bundle {
+        display: inline-flex;
+        align-items: center;
+        font-size: 9.5px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: var(--radius-sm);
+        background: var(--accent-dim);
+        color: var(--accent-soft);
+        border: 1px solid var(--accent-glow);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .search-result-text {
+        font-size: 12.5px;
+        color: var(--text-secondary);
+        line-height: 1.65;
+      }
+
+      .search-result-score {
+        font-size: 13px;
+        color: var(--text-primary);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        flex-shrink: 0;
+        padding: var(--space-1) var(--space-3);
+        background: var(--bg-active);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-strong);
+        align-self: center;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      }
+      /* ===== FIN RESULTADOS DE BÚSQUEDA ===== */
+
+      .viz-toolbar { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); flex-wrap: wrap; padding: var(--space-3); background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); }
+      .viz-toolbar input:not([type="checkbox"]) { flex: 1; min-width: 200px; }
+      .viz-toolbar select { width: auto; flex: 0 0 auto; }
+      .viz-toolbar .toggle-group { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+      .viz-toolbar .chip { display: inline-flex; align-items: center; gap: var(--space-2); padding: 6px 12px 6px 10px; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text-tertiary); font-size: 12px; font-weight: 500; line-height: 1; cursor: pointer; user-select: none; transition: all var(--transition-fast); }
+      .viz-toolbar .chip:hover { border-color: var(--border-strong); color: var(--text-secondary); }
+      .viz-toolbar .chip:has(input:checked) { background: var(--accent-dim); border-color: var(--border-focus); color: var(--text-primary); }
+      .viz-toolbar .chip input { width: 14px; height: 14px; margin: 0; flex: none; }
+      .viz-toolbar .toolbar-end { margin-left: auto; display: flex; align-items: center; gap: var(--space-2); }
+      .viz-toolbar .toolbar-end .btn { padding: 7px 14px; font-size: 12px; }
+      .viz-frame { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-elevated); position: relative; box-shadow: inset 0 2px 8px rgba(0,0,0,0.2); }
+      .legend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-3); padding: var(--space-3); background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); }
+      .legend-item { display: flex; align-items: center; gap: var(--space-2); font-size: 11.5px; color: var(--text-tertiary); font-weight: 500; }
+      .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 6px currentColor; }
+      .legend-line { width: 20px; height: 2px; flex-shrink: 0; border-radius: var(--radius-full); }
+      .hint { font-size: 11.5px; color: var(--text-muted); margin-top: var(--space-3); line-height: 1.7; padding: var(--space-3) var(--space-4); background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); }
+      .hint code { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1px 6px; font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); }
+
+      #graph-svg { display: block; cursor: grab; }
+      #map-svg { display: block; cursor: grab; touch-action: none; }
+      #map-svg:active { cursor: grabbing; }
+      #graph-svg:active { cursor: grabbing; }
+      .graph-node { cursor: pointer; transition: r var(--transition-fast), filter var(--transition-fast); }
+      .graph-node:hover { stroke: var(--text-primary); stroke-width: 2.5px; filter: drop-shadow(0 0 6px currentColor); }
+      .graph-edge { transition: opacity var(--transition-base); }
+      .graph-tooltip { position: absolute; background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); font-size: 11.5px; pointer-events: none; box-shadow: var(--shadow-lg); display: none; z-index: 20; max-width: 280px; color: var(--text-primary); line-height: 1.6; backdrop-filter: blur(8px); }
+      .graph-info { position: absolute; top: var(--space-3); right: var(--space-3); width: 220px; background: color-mix(in srgb, var(--bg-card) 96%, transparent); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: var(--space-4); font-size: 11.5px; display: none; backdrop-filter: blur(12px); box-shadow: var(--shadow-lg); animation: slideIn 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+      @keyframes slideIn { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+      .graph-info .close { float: right; cursor: pointer; color: var(--text-muted); font-size: 18px; line-height: 1; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); transition: all var(--transition-fast); }
+      .graph-info .close:hover { background: var(--bg-hover); color: var(--text-primary); }
+      .graph-info h4 { margin: 0 0 var(--space-2) 0; font-size: 13px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+      .graph-info .meta { color: var(--text-tertiary); font-size: 11px; line-height: 1.7; }
+      .graph-info .tag-chip { display: inline-flex; align-items: center; font-size: 9.5px; padding: 2px 6px; border-radius: var(--radius-sm); background: var(--bg-hover); border: 1px solid var(--border); margin: var(--space-1) var(--space-1) 0 0; color: var(--text-secondary); font-weight: 500; }
+      .graph-info .link-chip { display: inline-flex; align-items: center; font-size: 9.5px; padding: 2px 6px; border-radius: var(--radius-sm); background: var(--accent-dim); color: var(--accent-soft); border: 1px solid var(--accent-glow); margin: var(--space-1) var(--space-1) 0 0; font-weight: 500; }
+
+      .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); }
+      .tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-5); box-shadow: var(--shadow-sm); transition: all var(--transition-base); }
+      .tool-card:hover { box-shadow: var(--shadow-md); border-color: var(--border-strong); transform: translateY(-1px); }
+      .tool-card h4 { font-size: 13.5px; font-weight: 700; margin-bottom: var(--space-2); color: var(--text-primary); display: flex; align-items: center; gap: var(--space-2); }
+      .tool-card p { font-size: 12px; color: var(--text-tertiary); line-height: 1.65; margin-bottom: var(--space-4); }
+      .tool-card .btn { font-size: 12.5px; padding: var(--space-2) var(--space-3); }
+
+      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: var(--radius-full); border: 2px solid transparent; background-clip: padding-box; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); border: 2px solid transparent; background-clip: padding-box; }
+      ::-webkit-scrollbar-corner { background: transparent; }
+
+      input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+
+      select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; }
+      select:hover { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a0a0b0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); }
+
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+      .loading-pulse { animation: pulse 1.5s ease-in-out infinite; }
+
+      @media (max-width: 768px) {
+        .app { padding: var(--space-4); }
+        .hero { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+        .hero-stats { width: 100%; justify-content: space-between; }
+        .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .grid { grid-template-columns: 1fr; }
+        .tool-grid { grid-template-columns: 1fr; }
+        .search-row { flex-wrap: wrap; }
+        .search-row input { min-width: 100%; }
+        .viz-toolbar { flex-direction: column; align-items: stretch; }
+        .viz-toolbar input:not([type="checkbox"]) { min-width: 100%; }
+        .viz-toolbar .toolbar-end { margin-left: 0; justify-content: space-between; }
+      }
+    </style>
+    <base target="_blank">
+  <base target="_blank">
+<base target="_blank">
+</head>
+  <body>
+
+    <div class="app">
+
+      <div class="hero">
+        <div>
+          <div class="hero-title">Base de Conocimiento Local</div>
+          <div class="hero-sub" id="hero-sub">Cargando...</div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-num" id="stat-docs">-</div><div class="stat-label">Documentos</div></div>
+          <div class="stat"><div class="stat-num" id="stat-chunks">-</div><div class="stat-label">Fragmentos</div></div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="ingest">Ingestar</button>
+        <button class="tab" data-tab="library">Biblioteca</button>
+        <button class="tab" data-tab="search">Buscar</button>
+        <button class="tab" data-tab="graph">Grafo OKF</button>
+        <button class="tab" data-tab="map">Mapa RAG</button>
+        <button class="tab" data-tab="admin">Admin</button>
+      </div>
+
+      <div class="panel active" id="panel-ingest">
+        <div class="bundle-quick-create">
+          <div class="bundle-quick-copy">
+            <div class="bundle-quick-title">Organizá tu conocimiento</div>
+            <p>Creá un bundle para separar documentos por proyecto, curso o tema. Se seleccionará de inmediato para las dos formas de ingesta.</p>
+          </div>
+          <div class="bundle-quick-form">
+            <input type="text" id="ingest-new-bundle" placeholder="ej. coaching-2023" maxlength="64" autocomplete="off">
+            <button class="btn ghost" id="btn-ingest-create-bundle" type="button">Crear bundle</button>
+          </div>
+        </div>
+        <div class="status" id="status-ingest-bundle"></div>
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">Pegar texto</div>
+            <div class="field">
+              <label for="text-title">Título</label>
+              <input type="text" id="text-title" placeholder="ej. Notas de la reunión del jueves">
+            </div>
+            <div class="field">
+              <label for="text-body">Contenido</label>
+              <textarea id="text-body" placeholder="Pegá el texto acá..."></textarea>
+            </div>
+            <div class="field">
+              <label for="text-tags">Tags (separados por coma)</label>
+              <input type="text" id="text-tags" placeholder="ej. proyecto-x, reunion">
+            </div>
+            <div class="field">
+              <label for="text-intent">Tipo (para priorizar en búsqueda)</label>
+              <select id="text-intent">
+                <option value="">Sin clasificar</option>
+                <option value="info">Información — Consultar</option>
+                <option value="herramienta">Herramienta / habilidad — Ejecutar</option>
+                <option value="plan">Plan / proceso — Actuar</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="text-bundle">Bundle</label>
+              <select id="text-bundle"></select>
+            </div>
+            <button class="btn" id="btn-ingest-text">Ingestar texto</button>
+            <div class="status" id="status-text"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Subir archivo <span class="badge">.pdf .txt .md</span></div>
+            <div class="field">
+              <label for="file-input">Archivo</label>
+              <input type="file" id="file-input" accept=".pdf,.txt,.md">
+            </div>
+            <div class="field">
+              <label for="file-title">Título (opcional)</label>
+              <input type="text" id="file-title" placeholder="por defecto, el nombre del archivo">
+            </div>
+            <div class="field">
+              <label for="file-tags">Tags (separados por coma)</label>
+              <input type="text" id="file-tags" placeholder="ej. manual, referencia">
+            </div>
+            <div class="field">
+              <label for="file-intent">Tipo (para priorizar en búsqueda)</label>
+              <select id="file-intent">
+                <option value="">Sin clasificar</option>
+                <option value="info">Información — Consultar</option>
+                <option value="herramienta">Herramienta / habilidad — Ejecutar</option>
+                <option value="plan">Plan / proceso — Actuar</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="file-bundle">Bundle</label>
+              <select id="file-bundle"></select>
+            </div>
+            <button class="btn" id="btn-ingest-file">Ingestar archivo</button>
+            <div class="status" id="status-file"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel" id="panel-library">
+        <div class="card">
+          <div class="card-title">
+            Documentos ingestados
+            <span class="badge" id="lib-count">0 documentos</span>
+          </div>
+          <div style="margin-bottom:12px;">
+            <select id="library-bundle" style="width:220px;">
+              <option value="">Todos los bundles (primeros 200)</option>
+            </select>
+          </div>
+          <div id="library-list"><div class="empty">Cargando...</div></div>
+          <button class="btn ghost" id="btn-library-more" style="margin-top:12px;display:none;">Cargar más</button>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-search">
+        <div class="card">
+          <div class="card-title">
+            Búsqueda híbrida
+            <span class="badge">FTS5 + vector + RRF</span>
+          </div>
+          <div class="search-row">
+            <input type="text" id="search-input" placeholder="Escribí una consulta...">
+            <select id="search-bundle" style="width:150px;flex-shrink:0;">
+              <option value="">Todos los bundles</option>
+            </select>
+            <button class="btn" id="btn-search">Buscar</button>
+          </div>
+          <div id="search-results" style="margin-top:12px"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-graph">
+        <div class="card">
+          <div class="card-title">
+            Grafo de conceptos OKF
+            <span class="badge" id="graph-meta">cargando...</span>
+          </div>
+
+          <div class="viz-toolbar">
+            <select id="graph-bundle" style="min-width:180px;">
+              <option value="">Todos los bundles</option>
+            </select>
+            <div class="toggle-group">
+              <label class="chip"><input type="checkbox" id="g-filter-link" checked> Links</label>
+              <label class="chip"><input type="checkbox" id="g-filter-tag" checked> Tags</label>
+              <label class="chip"><input type="checkbox" id="g-filter-sim"> Similitud</label>
+              <label class="chip"><input type="checkbox" id="g-show-labels" checked> Labels</label>
+            </div>
+            <div class="toolbar-end">
+              <button class="btn ghost" id="btn-graph-refresh">↻ Actualizar</button>
+            </div>
+          </div>
+
+          <div class="viz-frame" id="graph-frame" style="height:520px;">
+            <svg id="graph-svg" width="100%" height="100%"></svg>
+            <div class="graph-tooltip" id="graph-tooltip"></div>
+            <div class="graph-info" id="graph-info">
+              <span class="close" onclick="closeGraphInfo()">×</span>
+              <h4 id="gi-title">Nodo</h4>
+              <div class="meta" id="gi-meta"></div>
+            </div>
+          </div>
+
+          <div class="legend" id="graph-legend"></div>
+          <div class="hint">
+            <b>Tipos de arista:</b> <code>link</code> = relación explícita (frontmatter), <code>tag</code> = tags compartidos,
+            <code>sim</code> = similitud de embeddings. Click en nodo para resaltar vecinos. Drag para mover.
+            El tamaño del nodo indica su grado (cantidad de conexiones).
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-map">
+        <div class="card">
+          <div class="card-title">
+            Mapa de similitud
+            <span class="badge">PCA 2D de embeddings</span>
+          </div>
+          <div class="viz-toolbar">
+            <input type="text" id="map-query" placeholder="Probá una consulta y mirá dónde cae vs. lo ingestado...">
+            <select id="map-bundle" style="width:150px;flex-shrink:0;">
+              <option value="">Todos los bundles</option>
+            </select>
+            <label class="chip"><input type="checkbox" id="m-show-labels" checked> Labels</label>
+            <button class="btn ghost" id="btn-map-refresh">Actualizar</button>
+          </div>
+          <div class="viz-frame"><svg id="map-svg" viewBox="0 0 900 480" width="100%" height="480"></svg></div>
+          <div class="legend" id="map-legend"></div>
+          <div class="hint">
+            Cada punto es un fragmento. Fragmentos parecidos terminan cerca; el color marca zonas de similitud
+            (con varios bundles, el color es el bundle) y cada zona se etiqueta con su documento más distintivo.
+            Rueda para acercar, arrastra para mover y doble clic para reiniciar la vista. La consulta aparece como un rombo blanco; los fragmentos recuperados por la búsqueda híbrida se resaltan con un anillo azul.
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-admin">
+        <div class="tool-grid">
+          <div class="tool-card">
+            <h4> Reindexar bundle</h4>
+            <p>Escanea los archivos <code>.md</code> del bundle, compara hashes con SQLite y re-ingesta solo los cambiados. Borra huérfanos.</p>
+            <div class="field" style="margin-bottom:8px;">
+              <select id="admin-reindex-bundle" style="width:100%;"></select>
+            </div>
+            <button class="btn" id="btn-reindex">Reindexar</button>
+            <div class="status" id="status-reindex"></div>
+          </div>
+
+          <div class="tool-card">
+            <h4> Bundles</h4>
+            <p>Creá, renombrá o borrá carpetas de bundle. Renombrar/borrar afecta a todos los documentos de ese bundle.</p>
+            <div class="field" style="margin-bottom:8px;">
+              <label for="admin-new-bundle">Nuevo bundle</label>
+              <div style="display:flex;gap:6px;">
+                <input type="text" id="admin-new-bundle" placeholder="ej. proyecto-x" style="flex:1;">
+                <button class="btn" id="btn-create-bundle" style="flex-shrink:0;">Crear</button>
+              </div>
+            </div>
+            <div id="admin-bundle-list"></div>
+            <div class="status" id="status-bundles"></div>
+          </div>
+
+          <div class="tool-card">
+            <h4> Reconstruir índice completo</h4>
+            <p><b>Borra</b> todo el <code>.sqlite3</code> y lo reconstruye 100% desde los archivos OKF. Es seguro: el índice es derived data.</p>
+            <button class="btn danger" id="btn-rebuild">Reconstruir índice</button>
+            <div class="status" id="status-rebuild"></div>
+          </div>
+
+          <div class="tool-card">
+            <h4> Tamaño del índice</h4>
+            <p>SQLite (texto+metadata) y el índice de vectores (.tvim) por separado. "Reciclable" es espacio que SQLite se queda después de borrar/reindexar mucho.</p>
+            <button class="btn ghost" id="btn-db-stats">Ver tamaño</button>
+            <div class="status" id="status-db-stats"></div>
+            <div style="display:flex;gap:6px;margin-top:8px;">
+              <button class="btn ghost" id="btn-checkpoint" style="flex:1;">Checkpoint WAL</button>
+              <button class="btn danger" id="btn-vacuum" style="flex:1;">Ejecutar VACUUM</button>
+            </div>
+            <div class="status" id="status-vacuum"></div>
+          </div>
+
+          <div class="tool-card">
+            <h4> Estado del sistema</h4>
+            <p>Información sobre bundles, documentos y el índice HNSW.</p>
+            <button class="btn ghost" id="btn-status">Refrescar estado</button>
+            <div class="status" id="status-sys"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    (function(){
+      let seq = 0;
+      const pending = {};
+      window.addEventListener('message', (ev) => {
+        const d = ev.data;
+        if (d && d.type === 'ame-call-result' && pending[d.id]) {
+          pending[d.id](d.result);
+          delete pending[d.id];
+        }
+      });
+      window.AME = {
+        call(name, args) {
+          return new Promise((resolve) => {
+            const id = ++seq;
+            pending[id] = resolve;
+            parent.postMessage({ type: 'ame-call', id, name, args: args || '' }, '*');
+          });
+        }
+      };
+    })();
+
+    const $ = (id) => document.getElementById(id);
+
+    function customConfirm(message) {
+      return new Promise((resolve) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'confirm-overlay';
+        overlay.innerHTML = `
+          <div class="confirm-box">
+            <div class="msg"></div>
+            <div class="actions">
+              <button class="btn ghost" data-act="no">Cancelar</button>
+              <button class="btn danger" data-act="yes">Confirmar</button>
+            </div>
+          </div>`;
+        overlay.querySelector('.msg').textContent = message;
+        document.body.appendChild(overlay);
+        const cleanup = (val) => { overlay.remove(); resolve(val); };
+        overlay.querySelector('[data-act="yes"]').addEventListener('click', () => cleanup(true));
+        overlay.querySelector('[data-act="no"]').addEventListener('click', () => cleanup(false));
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) cleanup(false); });
+      });
+    }
+
+    /// Modal de edición: carga el documento vía rag_get_document, deja
+    /// editar título/tags/links/texto y guarda con rag_update_document —
+    /// solo re-chunkea/re-embeddea ESE documento, sin reindexar el resto.
+    async function openEditDocument(slug, bundle) {
+      const overlay = document.createElement('div');
+      overlay.className = 'confirm-overlay';
+      overlay.innerHTML = `
+        <div class="edit-box">
+          <h3>Editar documento</h3>
+          <div class="edit-body">
+            <div class="status" id="edit-status">Cargando...</div>
+            <div class="field"><label>Título</label><input type="text" id="edit-title"></div>
+            <div class="field">
+              <label for="edit-intent">Tipo (para priorizar en búsqueda)</label>
+              <select id="edit-intent">
+                <option value="">Sin clasificar</option>
+                <option value="info">Información — Consultar</option>
+                <option value="herramienta">Herramienta / habilidad — Ejecutar</option>
+                <option value="plan">Plan / proceso — Actuar</option>
+              </select>
+            </div>
+            <div class="field"><label>Tags (separados por coma)</label><input type="text" id="edit-tags"></div>
+            <div class="field"><label>Links (separados por coma)</label><input type="text" id="edit-links"></div>
+            <div class="field"><label>Texto</label><textarea id="edit-text"></textarea></div>
+          </div>
+          <div class="actions">
+            <button class="btn ghost" data-act="cancel">Cancelar</button>
+            <button class="btn ok" data-act="save" disabled>Guardar</button>
+          </div>
+        </div>`;
+      document.body.appendChild(overlay);
+      const close = () => overlay.remove();
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+      overlay.querySelector('[data-act="cancel"]').addEventListener('click', close);
+
+      const saveBtn = overlay.querySelector('[data-act="save"]');
+      const statusEl = overlay.querySelector('#edit-status');
+
+      let sourceKind = 'text';
+      try {
+        const raw = await AME.call('rag_get_document', JSON.stringify({ slug, bundle }));
+        const res = JSON.parse(raw);
+        if (!res.ok) {
+          statusEl.textContent = res.error || 'No se pudo cargar el documento.';
+          statusEl.className = 'status error';
+          return;
+        }
+        sourceKind = res.doc.source_kind || 'text';
+        overlay.querySelector('#edit-title').value = res.doc.title || '';
+        overlay.querySelector('#edit-intent').value = res.doc.intent_kind || '';
+        overlay.querySelector('#edit-tags').value = (res.doc.tags || []).join(', ');
+        overlay.querySelector('#edit-links').value = (res.doc.links || []).join(', ');
+        overlay.querySelector('#edit-text').value = res.doc.text || '';
+        statusEl.style.display = 'none';
+        saveBtn.disabled = false;
+      } catch (e) {
+        statusEl.textContent = 'No se pudo cargar el documento: ' + e;
+        statusEl.className = 'status error';
+        return;
+      }
+
+      saveBtn.addEventListener('click', async () => {
+        saveBtn.disabled = true;
+        statusEl.style.display = 'flex';
+        statusEl.textContent = 'Guardando...';
+        statusEl.className = 'status';
+        const payload = {
+          slug, bundle,
+          title: overlay.querySelector('#edit-title').value.trim(),
+          text: overlay.querySelector('#edit-text').value,
+          tags: parseTags(overlay.querySelector('#edit-tags').value),
+          links: parseTags(overlay.querySelector('#edit-links').value),
+          source_kind: sourceKind,
+          intent_kind: overlay.querySelector('#edit-intent').value,
+        };
+        const result = await AME.call('rag_update_document', JSON.stringify(payload));
+        if (result.startsWith('[x]')) {
+          statusEl.textContent = result;
+          statusEl.className = 'status error';
+          saveBtn.disabled = false;
+        } else {
+          close();
+          refreshLibrary();
+        }
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    const BUNDLE_COLORS = [
+      'var(--chart-1)',
+      'var(--chart-3)',
+      'var(--chart-4)',
+      'var(--chart-2)',
+      'var(--chart-5)',
+    ];
+
+    function bundleColor(idx) {
+      return BUNDLE_COLORS[(idx || 0) % BUNDLE_COLORS.length];
+    }
+
+    function setStatus(id, text, kind) {
+      const el = $(id);
+      el.textContent = text;
+      el.className = 'status' + (kind ? ' ' + kind : '');
+    }
+
+    function parseTags(raw) {
+      return raw.split(',').map(t => t.trim()).filter(Boolean);
+    }
+
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b === btn));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        $('panel-' + btn.dataset.tab).classList.add('active');
+        if (btn.dataset.tab === 'library') refreshLibrary();
+        if (btn.dataset.tab === 'graph') refreshGraph();
+        if (btn.dataset.tab === 'map') refreshMap();
+      });
+    });
+
+    async function refreshHero() {
+      const raw = await AME.call('rag_stats', '');
+      let stats = { documents: 0, chunks: 0 };
+      try { stats = JSON.parse(raw); } catch (e) { }
+      $('stat-docs').textContent = stats.documents;
+      $('stat-chunks').textContent = stats.chunks;
+      $('hero-sub').textContent = stats.documents
+        ? 'FTS5 + vector local, sin conexion a internet'
+        : 'Todavia no ingestaste nada — empeza en la pestana "Ingestar"';
+      return stats;
+    }
+
+    const BUNDLE_SELECT_IDS = ['text-bundle', 'file-bundle', 'search-bundle', 'map-bundle', 'admin-reindex-bundle', 'library-bundle', 'graph-bundle'];
+    const BUNDLE_SELECTS_WITH_ALL = new Set(['search-bundle', 'map-bundle', 'graph-bundle']);
+    const BUNDLE_SELECTS_WITH_ALL_LABELED = { 'library-bundle': 'Todos los bundles (primeros 200)' };
+
+    async function fetchBundles() {
+      const raw = await AME.call('rag_list_bundles', '');
+      try {
+        const list = JSON.parse(raw);
+        if (Array.isArray(list) && list.length) return { bundles: list, loading: false };
+        console.warn('[RAG] rag_list_bundles devolvio una lista vacia:', raw);
+        return { bundles: [], loading: false };
+      } catch (e) {
+        const stillLoading = typeof raw === 'string' && /todav.a estoy iniciando/i.test(raw);
+        if (stillLoading) {
+          console.warn('[RAG] rag_list_bundles: RAG todavia iniciando, se reintentara.');
+          return { bundles: [], loading: true };
+        }
+        console.error('[RAG] rag_list_bundles devolvio algo no-JSON:', raw, e);
+        setStatus('status-sys', `[x] rag_list_bundles fallo: ${String(raw).slice(0, 200)}`, 'error');
+        return { bundles: [], loading: false };
+      }
+    }
+
+    let bundlePollTimer = null;
+
+    async function refreshBundleSelects() {
+      const { bundles, loading } = await fetchBundles();
+      BUNDLE_SELECT_IDS.forEach(id => {
+        const sel = $(id);
+        const prev = sel.value;
+        sel.innerHTML = '';
+        if (BUNDLE_SELECTS_WITH_ALL.has(id) || BUNDLE_SELECTS_WITH_ALL_LABELED[id]) {
+          const opt = document.createElement('option');
+          opt.value = ''; opt.textContent = BUNDLE_SELECTS_WITH_ALL_LABELED[id] || 'Todos los bundles';
+          sel.appendChild(opt);
+        }
+        if (!bundles.length) {
+          const opt = document.createElement('option');
+          opt.value = '';
+          opt.textContent = loading ? 'Cargando base de conocimiento...' : '(sin bundles — ver consola/log)';
+          opt.disabled = true;
+          sel.appendChild(opt);
+        }
+        bundles.forEach(b => {
+          const opt = document.createElement('option');
+          opt.value = b; opt.textContent = b;
+          sel.appendChild(opt);
+        });
+        if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
+      });
+      renderBundleAdminList(bundles, loading);
+
+      clearTimeout(bundlePollTimer);
+      if (loading) {
+        bundlePollAttempts = (bundlePollAttempts || 0) + 1;
+        if (bundlePollAttempts <= 30) {
+          bundlePollTimer = setTimeout(refreshBundleSelects, 1500);
+        } else {
+          console.error('[RAG] rag_list_bundles sigue "iniciando" despues de 45s — algo esta trabado.');
+          setStatus('status-sys', '[x] La base de conocimiento no termino de iniciar despues de 45s.', 'error');
+        }
+      } else {
+        bundlePollAttempts = 0;
+      }
+    }
+    let bundlePollAttempts = 0;
+
+    function renderBundleAdminList(bundles, loading) {
+      const box = $('admin-bundle-list');
+      if (!bundles.length) {
+        box.innerHTML = `<div class="empty">${loading ? 'Cargando base de conocimiento...' : 'Sin bundles todavia.'}</div>`;
+        return;
+      }
+      box.innerHTML = bundles.map(b => `
+        <div class="bundle-row" data-bundle="${escapeHtml(b)}">
+          <span class="bundle-name">${escapeHtml(b)}</span>
+          <div class="bundle-actions">
+            <button class="btn ghost btn-rename-bundle" data-bundle="${escapeHtml(b)}" ${b === 'default' ? 'disabled' : ''}>Renombrar</button>
+            <button class="btn danger btn-delete-bundle" data-bundle="${escapeHtml(b)}" ${b === 'default' ? 'disabled' : ''}>Borrar</button>
+          </div>
+        </div>
+      `).join('');
+
+      box.querySelectorAll('.btn-rename-bundle').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const old = btn.dataset.bundle;
+          const nuevo = prompt(`Nuevo nombre para el bundle '${old}':`, old);
+          if (!nuevo || nuevo === old) return;
+          setStatus('status-bundles', `Renombrando '${old}' a '${nuevo}'...`);
+          const result = await AME.call('rag_rename_bundle', JSON.stringify({ old, new: nuevo }));
+          setStatus('status-bundles', result, result.startsWith('[x]') ? 'error' : 'ok');
+          if (!result.startsWith('[x]')) { await refreshBundleSelects(); refreshHero(); }
+        });
+      });
+      box.querySelectorAll('.btn-delete-bundle').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const name = btn.dataset.bundle;
+          if (!(await customConfirm(`Borrar el bundle '${name}' entero?\n\nEsto elimina TODOS sus documentos de SQLite y la carpeta completa en disco. No se puede deshacer.`))) return;
+          setStatus('status-bundles', `Borrando '${name}'...`);
+          const result = await AME.call('rag_delete_bundle', name);
+          setStatus('status-bundles', result, result.startsWith('[x]') ? 'error' : 'ok');
+          if (!result.startsWith('[x]')) { await refreshBundleSelects(); refreshHero(); }
+        });
+      });
+    }
+
+    $('btn-create-bundle').addEventListener('click', async () => {
+      const name = $('admin-new-bundle').value.trim();
+      if (!name) { setStatus('status-bundles', 'Escribi un nombre primero.', 'error'); return; }
+      setStatus('status-bundles', 'Creando...');
+      const result = await AME.call('rag_create_bundle', name);
+      setStatus('status-bundles', result, result.startsWith('[x]') ? 'error' : 'ok');
+      if (!result.startsWith('[x]')) { $('admin-new-bundle').value = ''; await refreshBundleSelects(); }
+    });
+
+    async function crearBundleDesdeIngesta() {
+      const input = $('ingest-new-bundle');
+      const btn = $('btn-ingest-create-bundle');
+      const name = input.value.trim();
+      if (!name) {
+        setStatus('status-ingest-bundle', 'Escribí un nombre para el bundle.', 'error');
+        input.focus();
+        return;
+      }
+      if (!/^[a-zA-Z0-9_-]{1,64}$/.test(name)) {
+        setStatus('status-ingest-bundle', "Usá solo letras, números, '-' o '_' (sin espacios).", 'error');
+        input.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      setStatus('status-ingest-bundle', `Creando '${name}'...`);
+      try {
+        const result = await AME.call('rag_create_bundle', name);
+        if (result.startsWith('[x]')) {
+          setStatus('status-ingest-bundle', result, 'error');
+          return;
+        }
+        input.value = '';
+        await refreshBundleSelects();
+        ['text-bundle', 'file-bundle'].forEach(id => {
+          const select = $(id);
+          if ([...select.options].some(option => option.value === name)) select.value = name;
+        });
+        setStatus('status-ingest-bundle', `Bundle '${name}' creado y seleccionado para la ingesta.`, 'ok');
+      } catch (e) {
+        setStatus('status-ingest-bundle', 'No se pudo crear el bundle: ' + e, 'error');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    $('btn-ingest-create-bundle').addEventListener('click', crearBundleDesdeIngesta);
+    $('ingest-new-bundle').addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        crearBundleDesdeIngesta();
+      }
+    });
+
+    $('btn-ingest-text').addEventListener('click', async () => {
+      const title = $('text-title').value.trim();
+      const text = $('text-body').value;
+      const tags = parseTags($('text-tags').value);
+      const bundle = $('text-bundle').value;
+      const intent_kind = $('text-intent').value;
+      if (!text.trim()) { setStatus('status-text', 'Escribi algo de texto primero.', 'error'); return; }
+
+      const btn = $('btn-ingest-text');
+      btn.disabled = true;
+      setStatus('status-text', 'Ingestando...');
+      const result = await AME.call('rag_ingest_text', JSON.stringify({ title, text, tags, bundle, intent_kind }));
+      btn.disabled = false;
+      setStatus('status-text', result, result.startsWith('[x]') ? 'error' : 'ok');
+      if (!result.startsWith('[x]')) {
+        $('text-title').value = ''; $('text-body').value = ''; $('text-tags').value = ''; $('text-intent').value = '';
+        refreshHero();
+      }
+    });
+
+    function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+    $('btn-ingest-file').addEventListener('click', async () => {
+      const fileInput = $('file-input');
+      const file = fileInput.files[0];
+      if (!file) { setStatus('status-file', 'Elegi un archivo primero.', 'error'); return; }
+
+      const btn = $('btn-ingest-file');
+      btn.disabled = true;
+      setStatus('status-file', 'Leyendo archivo...');
+      try {
+        const content_b64 = await readFileAsBase64(file);
+        const title = $('file-title').value.trim();
+        const tags = parseTags($('file-tags').value);
+        const bundle = $('file-bundle').value;
+        const intent_kind = $('file-intent').value;
+        setStatus('status-file', 'Ingestando...');
+        const result = await AME.call('rag_ingest_file', JSON.stringify({ filename: file.name, content_b64, title, tags, bundle, intent_kind }));
+        setStatus('status-file', result, result.startsWith('[x]') ? 'error' : 'ok');
+        if (!result.startsWith('[x]')) {
+          fileInput.value = ''; $('file-title').value = ''; $('file-tags').value = ''; $('file-intent').value = '';
+          refreshHero();
+        }
+      } catch (e) {
+        setStatus('status-file', 'No se pudo leer el archivo: ' + e, 'error');
+      }
+      btn.disabled = false;
+    });
+
+    const LIBRARY_PAGE_SIZE = 200;
+    let libraryOffset = 0;
+    let libraryDocsShown = [];
+
+    const INTENT_META = {
+      info: { label: 'Información', color: '#3b82f6' },
+      herramienta: { label: 'Herramienta', color: '#f59e0b' },
+      plan: { label: 'Plan / proceso', color: '#10b981' },
+    };
+    function intentBadge(kind) {
+      const meta = INTENT_META[kind];
+      if (!meta) return '';
+      return `<span class="doc-bundle" style="background:${meta.color}18;color:${meta.color};border:1px solid ${meta.color}30;">${meta.label}</span>`;
+    }
+
+    function renderLibraryRows(docs, append) {
+      const listEl = $('library-list');
+      if (!append) listEl.innerHTML = '';
+      if (!append && !docs.length) {
+        listEl.innerHTML = '<div class="empty">Sin documentos en este filtro.</div>';
+        return;
+      }
+      docs.forEach(doc => {
+        const row = document.createElement('div');
+        row.className = 'doc-row';
+        const bColor = bundleColor(doc.bundle_idx || 0);
+        const tags = (doc.tags || []).map(t => `<span class="doc-tag">${escapeHtml(t)}</span>`).join('');
+        const bundleLabel = doc.bundle || 'default';
+        row.innerHTML = `
+          <div style="flex:1;min-width:0;">
+            <div class="doc-title">${escapeHtml(doc.title)}</div>
+            <div class="doc-meta">
+              <span class="doc-bundle" style="background:${bColor}18;color:${bColor};border:1px solid ${bColor}30;">${escapeHtml(bundleLabel)}</span>
+              ${intentBadge(doc.intent_kind)}
+              ${doc.chunks} fragmento(s) · ${escapeHtml(doc.source_kind || 'text')}
+              ${doc.article_type && doc.article_type !== 'article' ? '· <span style="color:var(--warning)">' + doc.article_type + '</span>' : ''}
+            </div>
+            <div style="margin-top:4px;">${tags}</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0;">
+            <button class="btn ghost btn-edit" data-slug="${escapeHtml(doc.slug)}" data-bundle="${escapeHtml(doc.bundle || 'default')}" style="padding:4px 10px;font-size:11px;">Editar</button>
+            <button class="btn danger btn-delete" data-slug="${escapeHtml(doc.slug)}" data-bundle="${escapeHtml(doc.bundle || 'default')}" style="padding:4px 10px;font-size:11px;">Borrar</button>
+          </div>
+        `;
+        row.querySelector('.btn-edit').addEventListener('click', (ev) => {
+          openEditDocument(ev.target.dataset.slug, ev.target.dataset.bundle);
+        });
+        row.querySelector('.btn-delete').addEventListener('click', async (ev) => {
+          ev.target.disabled = true;
+          const slug = ev.target.dataset.slug;
+          const bundle = ev.target.dataset.bundle;
+          await AME.call('rag_delete', JSON.stringify({ slug, bundle }));
+          refreshLibrary();
+        });
+        listEl.appendChild(row);
+      });
+    }
+
+    async function refreshLibrary() {
+      const listEl = $('library-list');
+      listEl.innerHTML = '<div class="empty">Cargando...</div>';
+      libraryOffset = 0;
+      const stats = await refreshHero();
+      const bundle = $('library-bundle').value;
+      const raw = await AME.call('rag_list', JSON.stringify({ bundle: bundle || null, limit: LIBRARY_PAGE_SIZE, offset: 0 }));
+      let docs = [];
+      try { docs = JSON.parse(raw); } catch (e) { docs = []; }
+      libraryDocsShown = docs;
+      libraryOffset = docs.length;
+
+      const totalLabel = bundle ? `${docs.length}+ documento(s) en '${bundle}'` : `${stats.documents} documento(s) en total`;
+      $('lib-count').textContent = totalLabel;
+      renderLibraryRows(docs, false);
+      $('btn-library-more').style.display = docs.length === LIBRARY_PAGE_SIZE ? 'inline-block' : 'none';
+    }
+
+    $('btn-library-more').addEventListener('click', async () => {
+      const btn = $('btn-library-more');
+      btn.disabled = true;
+      const bundle = $('library-bundle').value;
+      const raw = await AME.call('rag_list', JSON.stringify({ bundle: bundle || null, limit: LIBRARY_PAGE_SIZE, offset: libraryOffset }));
+      let docs = [];
+      try { docs = JSON.parse(raw); } catch (e) { docs = []; }
+      libraryOffset += docs.length;
+      renderLibraryRows(docs, true);
+      btn.disabled = false;
+      btn.style.display = docs.length === LIBRARY_PAGE_SIZE ? 'inline-block' : 'none';
+    });
+
+    $('library-bundle').addEventListener('change', refreshLibrary);
+
+    function highlightTerms(text, query) {
+      const terms = query.toLowerCase()
+        .replace(/["']/g, '')
+        .split(/\s+/)
+        .filter(t => t.length > 2);
+      if (!terms.length) return escapeHtml(text);
+      let html = escapeHtml(text);
+      terms.forEach(term => {
+        const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        html = html.replace(re, '<mark style="background:color-mix(in srgb, var(--chart-1) 18%, transparent);color:var(--chart-1);border-radius:2px;padding:0 2px;">$1</mark>');
+      });
+      return html;
+    }
+
+    // ===== FUNCIÓN runSearch CORREGIDA - LISTA CON SEPARADORES =====
+    async function runSearch() {
+      const q = $('search-input').value.trim();
+      const bundle = $('search-bundle').value;
+      const resultsEl = $('search-results');
+      if (!q) return;
+
+      resultsEl.innerHTML = '<div class="empty">Buscando...</div>';
+      const raw = await AME.call('rag_search', JSON.stringify({ query: q, bundle: bundle || undefined, top_k: 6 }));
+
+      let data;
+      try { data = JSON.parse(raw); } catch (e) {
+        resultsEl.innerHTML = `<div class="empty">${escapeHtml(raw)}</div>`;
+        return;
+      }
+
+      if (!data.ok) {
+        resultsEl.innerHTML = `<div class="empty" style="color:var(--danger)">${escapeHtml(data.error || raw)}</div>`;
+        return;
+      }
+      if (!data.results || !data.results.length) {
+        resultsEl.innerHTML = '<div class="empty">Sin resultados en la base de conocimiento local.</div>';
+        return;
+      }
+
+      resultsEl.innerHTML = '';
+      if (data.detected_intent) {
+        const hint = document.createElement('div');
+        hint.style.cssText = 'font-size:11px;color:var(--text-secondary);margin-bottom:8px;';
+        hint.innerHTML = `Intención detectada: ${intentBadge(data.detected_intent)}`;
+        resultsEl.appendChild(hint);
+      }
+      data.results.forEach((r, i) => {
+        const row = document.createElement('div');
+        row.className = 'search-result-row';
+
+        const isLead = r.chunk_index === 0;
+        const leadBadge = isLead ? '<span style="font-size:9px;color:var(--chart-1);background:color-mix(in srgb,var(--chart-1) 10%,transparent);border-radius:3px;padding:1px 5px;margin-left:6px;">LEAD</span>' : '';
+
+        row.innerHTML = `
+          <div class="search-result-left">
+            <span class="search-result-number">${i + 1}.</span>
+            <div class="search-result-content">
+              <div class="search-result-title">
+                <b>${escapeHtml(r.title)}</b>
+                ${leadBadge}
+                <span class="search-result-bundle">${escapeHtml(r.bundle)}</span>
+                ${intentBadge(r.intent_kind)}
+              </div>
+              <div class="search-result-text">${highlightTerms(r.snippet, q)}</div>
+            </div>
+          </div>
+          <span class="search-result-score">${r.score.toFixed(4)}</span>
+        `;
+
+        resultsEl.appendChild(row);
+      });
+    }
+    // ===== FIN FUNCIÓN runSearch =====
+
+    $('btn-search').addEventListener('click', runSearch);
+    $('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+
+    const NS = 'http://www.w3.org/2000/svg';
+    function svgEl(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+
+    const GRAPH_EDGE_STYLE = {
+      link: { stroke: 'var(--text-primary)', width: 1.8, dash: null, opacity: 0.9, len: 70 },
+      tag:  { stroke: 'var(--text-secondary)', width: 1.1, dash: null, opacity: 0.5, len: 100 },
+      sim:  { stroke: 'var(--text-muted)', width: 0.9, dash: '2,3', opacity: 0.4, len: 130 },
+    };
+    const GRAPH_MAX_NODES = 400;       // el backend manda solo los más conectados
+    const GRAPH_HUB_LABELS = 25;       // labels visibles por defecto (mayor grado)
+    const GRAPH_LABEL_ZOOM = 1.8;      // a partir de este zoom se ven todos los labels
+
+    let graphData = null;
+    let selectedNode = null;
+    let graphReq = 0;
+    let graphSim = null; // { nodes, edges, linkEls, nodeEls, adj, raf, onWindowMove, onWindowUp }
+
+    function stopGraphSim() {
+      if (!graphSim) return;
+      if (graphSim.raf) cancelAnimationFrame(graphSim.raf);
+      window.removeEventListener('pointermove', graphSim.onWindowMove);
+      window.removeEventListener('pointerup', graphSim.onWindowUp);
+      graphSim = null;
+    }
+
+    async function refreshGraph() {
+      const reqId = ++graphReq;
+      stopGraphSim();
+      selectedNode = null;
+      $('graph-info').style.display = 'none';
+      $('graph-legend').innerHTML = '';
+
+      // Clona el <svg> para tirar cualquier listener viejo (wheel/pointerdown/click)
+      // que hubiera quedado pegado de una carga anterior del grafo.
+      const oldSvg = $('graph-svg');
+      const svg = oldSvg.cloneNode(false);
+      oldSvg.replaceWith(svg);
+
+      const frame = $('graph-frame');
+      const W = frame.clientWidth || 900;
+      const H = 520;
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+      const bundle = $('graph-bundle').value;
+      // `sim` solo se calcula en el backend si el checkbox está marcado.
+      const raw = await AME.call('rag_okf_graph', JSON.stringify({
+        bundle: bundle || null,
+        sim: $('g-filter-sim').checked,
+        max_nodes: GRAPH_MAX_NODES,
+      }));
+      if (reqId !== graphReq) return; // llegó una respuesta más nueva
+
+      if (raw.startsWith('[x]')) {
+        const t = svgEl('text', { x: W/2, y: H/2, 'text-anchor': 'middle', fill: 'var(--ame-danger, #e5555a)', 'font-size': 13 });
+        t.textContent = raw.replace(/^\[x\]\s*/, '');
+        svg.appendChild(t);
+        $('graph-meta').textContent = 'error';
+        return;
+      }
+
+      let graph;
+      try { graph = JSON.parse(raw); } catch (e) { graph = { nodes: [], edges: [], meta: {} }; }
+      graphData = graph;
+
+      if (!graph.nodes.length) {
+        const t = svgEl('text', { x: W/2, y: H/2, 'text-anchor': 'middle', fill: 'var(--text-muted)', 'font-size': 13 });
+        t.textContent = 'Ingesta al menos un documento para ver el grafo.';
+        svg.appendChild(t);
+        $('graph-meta').textContent = 'vacio';
+        return;
+      }
+
+      const m = graph.meta || {};
+      const shown = `${m.total_nodes} nodos` + (m.truncated ? ` (los más conectados de ${m.total_docs})` : '');
+      $('graph-meta').textContent = `${shown} · ${m.total_edges} aristas · ${(m.bundles || []).join(', ')}`;
+
+      buildGraphLegend(graph);
+      startGraphSim(graph, svg, W, H);
+    }
+
+    function buildGraphLegend(graph) {
+      const legend = $('graph-legend');
+      const bundles = graph.meta.bundles || [];
+      if (bundles.length > 1) {
+        // Varios bundles: el color del nodo identifica el bundle.
+        bundles.forEach((b, i) => {
+          const item = document.createElement('div');
+          item.className = 'legend-item';
+          item.innerHTML = `<span class="legend-dot" style="background:${bundleColor(i)}"></span>${escapeHtml(b)}`;
+          legend.appendChild(item);
+        });
+      } else {
+        // Un solo bundle: el nombre ya aparece en el badge; el color indica la comunidad.
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.textContent = 'color = comunidad (nodos muy conectados entre sí)';
+        legend.appendChild(item);
+      }
+      [['link', 'relacion explicita'], ['tag', 'tags compartidos'], ['sim', 'similitud embedding']].forEach(([type, label]) => {
+        const style = GRAPH_EDGE_STYLE[type];
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.innerHTML = `<span class="legend-line" style="background:${type === 'link' ? style.stroke : 'transparent'};border-top:2px ${type === 'link' ? 'solid' : type === 'tag' ? 'dashed' : 'dotted'} ${style.stroke};"></span>${label}`;
+        legend.appendChild(item);
+      });
+    }
+
+// LAYOUT_BEGIN
+    // Física del grafo, separada del DOM. Repulsión solo entre nodos cercanos
+    // (grilla espacial, ~O(n)), resortes solo para las aristas activas,
+    // gravedad suave al centro y SIN paredes: antes los nodos se clampeaban al
+    // lienzo y la repulsión los apilaba contra el borde (el "anillo").
+    function makeGraphLayout(nodes, edges, W, H, styles) {
+      const N = nodes.length;
+      const SCALE = 2.2;         // lienzo virtual más grande que el visible; luego se encuadra
+      const k = Math.sqrt((W * H) / Math.max(N, 1)) * SCALE;
+      const R = k * 3.5;         // radio de la repulsión
+      const REP = 0.02, SPRING = 0.1, GRAVITY = 0.012, DAMP = 0.82;
+      const cx = W / 2, cy = H / 2;
+      const layout = { alpha: 1 };
+
+      layout.step = function () {
+        layout.alpha *= 0.977;     // ~200 ticks hasta alpha < 0.01
+        const a = layout.alpha;
+        const grid = new Map();
+        for (let i = 0; i < N; i++) {
+          const n = nodes[i];
+          n._gx = Math.floor(n.x / R); n._gy = Math.floor(n.y / R);
+          const key = n._gx * 1000003 + n._gy;
+          const c = grid.get(key);
+          if (c) c.push(i); else grid.set(key, [i]);
+        }
+        for (let i = 0; i < N; i++) {
+          const p = nodes[i];
+          for (let ox = -1; ox <= 1; ox++) for (let oy = -1; oy <= 1; oy++) {
+            const c = grid.get((p._gx + ox) * 1000003 + (p._gy + oy));
+            if (!c) continue;
+            for (let t = 0; t < c.length; t++) {
+              const j = c[t];
+              if (j <= i) continue;
+              const q = nodes[j];
+              let dx = p.x - q.x, dy = p.y - q.y;
+              let d2 = dx * dx + dy * dy;
+              if (d2 > R * R) continue;
+              if (d2 < 0.01) { dx = Math.random() - 0.5; dy = Math.random() - 0.5; d2 = dx * dx + dy * dy + 0.01; }
+              const d = Math.sqrt(d2);
+              let f = REP * k * k / d * a;
+              if (d < p.r + q.r + 4) f *= 3;       // anti-solapamiento
+              dx /= d; dy /= d;
+              p.vx += dx * f; p.vy += dy * f;
+              q.vx -= dx * f; q.vy -= dy * f;
+            }
+          }
+        }
+        for (let e = 0; e < edges.length; e++) {
+          const edge = edges[e];
+          if (!edge.active) continue;
+          let dx = edge.b.x - edge.a.x, dy = edge.b.y - edge.a.y;
+          const d = Math.sqrt(dx * dx + dy * dy) || 0.01;
+          const st = styles[edge.type] || styles.sim;
+          const f = (d - st.len * SCALE * 0.6) * SPRING * (0.5 + edge.weight) * a;
+          dx /= d; dy /= d;
+          edge.a.vx += dx * f; edge.a.vy += dy * f;
+          edge.b.vx -= dx * f; edge.b.vy -= dy * f;
+        }
+        let moving = false;
+        for (let i = 0; i < N; i++) {
+          const n = nodes[i];
+          if (n.fx !== null) { n.x = n.fx; n.y = n.fy; n.vx = 0; n.vy = 0; moving = true; continue; }
+          n.vx += (cx - n.x) * GRAVITY * a;
+          n.vy += (cy - n.y) * GRAVITY * a;
+          n.vx *= DAMP; n.vy *= DAMP;
+          n.x += n.vx; n.y += n.vy;
+          if (Math.abs(n.vx) > 0.05 || Math.abs(n.vy) > 0.05) moving = true;
+        }
+        return layout.alpha > 0.01 || moving;
+      };
+      return layout;
+    }
+// LAYOUT_END
+
+    // Grafo de fuerzas en vanilla JS/SVG — sin dependencias externas, para que
+    // siga funcionando igual de offline que el resto de esta UI.
+    // Cambios clave respecto a la versión anterior:
+    //  - calentamiento síncrono (sin animar) + ajuste automático de la vista,
+    //  - la simulación se detiene sola (antes casi nunca paraba),
+    //  - las aristas ocultas por los filtros ya no ejercen fuerza,
+    //  - labels solo en hubs / zoom alto / selección (antes los 1000 a la vez),
+    //  - vecinos por Set precalculado (antes O(nodos × aristas) en cada clic).
+    function startGraphSim(graph, svg, W, H) {
+      const N = graph.nodes.length;
+      const spread = Math.sqrt((W * H) / Math.max(N, 1)) * 0.6;
+      const nodes = graph.nodes.map((n, i) => {
+        // Espiral de girasol: reparto parejo, sin superposición inicial.
+        const ang = i * 2.399963, rad = Math.sqrt(i + 0.5) * spread;
+        return { ...n, x: W / 2 + Math.cos(ang) * rad, y: H / 2 + Math.sin(ang) * rad, vx: 0, vy: 0, fx: null, fy: null };
+      });
+      const byId = new Map(nodes.map(n => [n.id, n]));
+      const edges = graph.edges
+        .map(e => ({ ...e, a: byId.get(e.source), b: byId.get(e.target), active: true }))
+        .filter(e => e.a && e.b);
+
+      const adj = new Map();
+      edges.forEach(e => {
+        if (!adj.has(e.source)) adj.set(e.source, new Set());
+        if (!adj.has(e.target)) adj.set(e.target, new Set());
+        adj.get(e.source).add(e.target);
+        adj.get(e.target).add(e.source);
+      });
+
+      const degs = nodes.map(n => n.degree || 0);
+      const minDeg = Math.min(...degs), maxDeg = Math.max(...degs);
+      nodes.forEach(n => { n.r = 4 + (maxDeg > minDeg ? ((n.degree || 0) - minDeg) / (maxDeg - minDeg) * 5 : 2); });
+
+      // Colores por COMUNIDAD (propagación de etiquetas sobre las aristas):
+      // con un solo bundle todos los nodos eran del mismo color y no se
+      // distinguía nada. Con varios bundles se mantiene el color por bundle.
+      const multiBundle = (graph.meta.bundles || []).length > 1;
+      const comm = new Map(nodes.map(n => [n.id, n.id]));
+      if (!multiBundle) {
+        const order = nodes.map(n => n.id).sort((a, b) => a - b);
+        for (let it = 0; it < 12; it++) {
+          let changed = false;
+          for (const id of order) {
+            const nb = adj.get(id);
+            if (!nb || !nb.size) continue;
+            const votes = new Map();
+            nb.forEach(o => { const c = comm.get(o); votes.set(c, (votes.get(c) || 0) + 1); });
+            let best = comm.get(id), bestV = -1;
+            votes.forEach((v, c) => { if (v > bestV || (v === bestV && c < best)) { best = c; bestV = v; } });
+            if (best !== comm.get(id)) { comm.set(id, best); changed = true; }
+          }
+          if (!changed) break;
+        }
+      }
+      const commSize = new Map();
+      comm.forEach(c => commSize.set(c, (commSize.get(c) || 0) + 1));
+      const commRank = new Map([...commSize.entries()].sort((a, b) => b[1] - a[1]).map(([c], i) => [c, i]));
+      const nodeColor = n => {
+        if (multiBundle) return bundleColor(n.bundle_idx || 0);
+        const rk = commRank.get(comm.get(n.id));
+        if (commSize.get(comm.get(n.id)) < 3 || rk >= 14) return 'var(--text-muted)';   // grupos chicos/sueltos
+        return `hsl(${(rk * 137.5) % 360}, 65%, 62%)`;
+      };
+      const hubIds = new Set([...nodes].sort((a, b) => (b.degree || 0) - (a.degree || 0)).slice(0, GRAPH_HUB_LABELS).map(n => n.id));
+
+      const viewport = svgEl('g', { class: 'graph-viewport' });
+      svg.appendChild(viewport);
+      const view = { x: 0, y: 0, k: 1 };
+      let userMoved = false;
+      const applyTransform = () => viewport.setAttribute('transform', `translate(${view.x},${view.y}) scale(${view.k})`);
+
+      const linkEls = edges.map(edge => {
+        const style = GRAPH_EDGE_STYLE[edge.type] || GRAPH_EDGE_STYLE.sim;
+        const line = svgEl('line', { class: 'graph-edge', stroke: style.stroke, 'stroke-width': style.width });
+        if (style.dash) line.setAttribute('stroke-dasharray', style.dash);
+        viewport.appendChild(line);
+        return { edge, line };
+      });
+
+      const tooltip = $('graph-tooltip');
+      const layout = makeGraphLayout(nodes, edges, W, H, GRAPH_EDGE_STYLE);
+
+      function wakeGraphSim() {
+        layout.alpha = Math.max(layout.alpha, 0.3);
+        if (graphSim && !graphSim.raf && !graphSim.booting) graphSim.raf = requestAnimationFrame(tick);
+      }
+
+      const labelShouldShow = n => {
+        if (!$('g-show-labels').checked) return false;
+        if (selectedNode !== null) return n.id === selectedNode || (adj.get(selectedNode) || new Set()).has(n.id);
+        return hubIds.has(n.id) || view.k >= GRAPH_LABEL_ZOOM;
+      };
+
+      const nodeEls = nodes.map(n => {
+        const r = n.r;
+        const g = svgEl('g', { class: 'graph-node-group' });
+        const circle = svgEl('circle', { class: 'graph-node', r, fill: nodeColor(n), 'data-id': n.id });
+        g.appendChild(circle);
+        const label = svgEl('text', { fill: 'var(--text-secondary)', 'font-size': 10, x: r + 4, y: 3 });
+        label.textContent = n.title.length > 24 ? n.title.slice(0, 23) + '...' : n.title;
+        label.style.display = 'none';
+        label.style.pointerEvents = 'none';
+        g.appendChild(label);
+        viewport.appendChild(g);
+
+        circle.addEventListener('mouseenter', () => {
+          label.style.display = '';
+          tooltip.style.display = 'block';
+          tooltip.innerHTML = `<b>${escapeHtml(n.title)}</b><br><span style="color:var(--text-tertiary)">${escapeHtml(n.bundle)} · ${n.degree} conexiones · ${n.chunks} chunks</span>`;
+        });
+        circle.addEventListener('mousemove', ev => {
+          const rect = svg.getBoundingClientRect();
+          tooltip.style.left = (ev.clientX - rect.left + 14) + 'px';
+          tooltip.style.top = (ev.clientY - rect.top - 10) + 'px';
+        });
+        circle.addEventListener('mouseleave', () => {
+          tooltip.style.display = 'none';
+          label.style.display = labelShouldShow(n) ? '' : 'none';
+        });
+
+        circle.addEventListener('pointerdown', ev => {
+          ev.stopPropagation();
+          let moved = false;
+          circle.setPointerCapture(ev.pointerId);
+          const onMove = mv => {
+            moved = true;
+            const rect = svg.getBoundingClientRect();
+            n.fx = (mv.clientX - rect.left - view.x) / view.k;
+            n.fy = (mv.clientY - rect.top - view.y) / view.k;
+            wakeGraphSim();
+          };
+          const onUp = () => {
+            n.fx = null; n.fy = null;
+            circle.releasePointerCapture(ev.pointerId);
+            circle.removeEventListener('pointermove', onMove);
+            circle.removeEventListener('pointerup', onUp);
+            if (!moved) {
+              selectedNode = selectedNode === n.id ? null : n.id;
+              if (selectedNode !== null) showGraphInfo(selectedNode); else closeGraphInfo();
+              applyGraphFilters();
+            }
+          };
+          circle.addEventListener('pointermove', onMove);
+          circle.addEventListener('pointerup', onUp);
+        });
+
+        return { n, g, circle, label, r };
+      });
+
+      svg.addEventListener('click', () => {
+        if (selectedNode !== null) { selectedNode = null; closeGraphInfo(); applyGraphFilters(); }
+      });
+
+      // pan del fondo
+      let panning = false, panStart = null;
+      svg.addEventListener('pointerdown', ev => {
+        if (ev.target !== svg) return;
+        panning = true; userMoved = true;
+        panStart = { x: ev.clientX - view.x, y: ev.clientY - view.y };
+      });
+      function onWindowMove(ev) {
+        if (!panning) return;
+        view.x = ev.clientX - panStart.x;
+        view.y = ev.clientY - panStart.y;
+        applyTransform();
+      }
+      function onWindowUp() { panning = false; }
+      window.addEventListener('pointermove', onWindowMove);
+      window.addEventListener('pointerup', onWindowUp);
+
+      // zoom con la rueda
+      let labelsZoomed = false;
+      svg.addEventListener('wheel', ev => {
+        ev.preventDefault();
+        userMoved = true;
+        const rect = svg.getBoundingClientRect();
+        const mx = ev.clientX - rect.left, my = ev.clientY - rect.top;
+        const factor = ev.deltaY < 0 ? 1.1 : 0.9;
+        const newK = Math.min(6, Math.max(0.15, view.k * factor));
+        view.x = mx - (mx - view.x) * (newK / view.k);
+        view.y = my - (my - view.y) * (newK / view.k);
+        view.k = newK;
+        applyTransform();
+        const z = view.k >= GRAPH_LABEL_ZOOM;
+        if (z !== labelsZoomed) { labelsZoomed = z; applyGraphFilters(); }
+      }, { passive: false });
+
+      // Encuadra el 96% central de los nodos (ignora outliers sueltos).
+      function fitView() {
+        const xs = nodes.map(n => n.x).sort((a, b) => a - b);
+        const ys = nodes.map(n => n.y).sort((a, b) => a - b);
+        const lo = Math.floor(N * 0.02), hi = Math.max(lo, Math.ceil(N * 0.98) - 1);
+        const minX = xs[lo], maxX = xs[hi], minY = ys[lo], maxY = ys[hi];
+        const pad = 40;
+        const bw = Math.max(maxX - minX, 1), bh = Math.max(maxY - minY, 1);
+        view.k = Math.max(0.15, Math.min((W - 2 * pad) / bw, (H - 2 * pad) / bh, 2.5));
+        view.x = W / 2 - ((minX + maxX) / 2) * view.k;
+        view.y = H / 2 - ((minY + maxY) / 2) * view.k;
+        applyTransform();
+        labelsZoomed = view.k >= GRAPH_LABEL_ZOOM;
+      }
+
+      function draw() {
+        for (let i = 0; i < linkEls.length; i++) {
+          const { edge, line } = linkEls[i];
+          if (!edge.active) continue;
+          line.setAttribute('x1', edge.a.x.toFixed(1));
+          line.setAttribute('y1', edge.a.y.toFixed(1));
+          line.setAttribute('x2', edge.b.x.toFixed(1));
+          line.setAttribute('y2', edge.b.y.toFixed(1));
+        }
+        for (let i = 0; i < nodeEls.length; i++) {
+          const { n, g } = nodeEls[i];
+          g.setAttribute('transform', `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`);
+        }
+      }
+
+      function tick() {
+        const keepGoing = layout.step();
+        draw();
+        if (keepGoing && graphSim) {
+          graphSim.raf = requestAnimationFrame(tick);
+        } else if (graphSim) {
+          graphSim.raf = null;
+          if (!userMoved) { fitView(); applyGraphFilters(); }
+        }
+      }
+
+      graphSim = { nodes, edges, linkEls, nodeEls, adj, raf: null, booting: true, onWindowMove, onWindowUp, layout, wake: wakeGraphSim, labelShouldShow };
+      applyGraphFilters();                       // fija edge.active antes de simular
+      for (let i = 0; i < 150; i++) layout.step(); // calentamiento sin pintar
+      fitView();
+      draw();
+      applyGraphFilters();
+      graphSim.booting = false;
+      if (!graphSim.raf) graphSim.raf = requestAnimationFrame(tick);
+    }
+
+    function applyGraphFilters() {
+      if (!graphSim) return;
+      const showLink = $('g-filter-link').checked;
+      const showTag = $('g-filter-tag').checked;
+      const showSim = $('g-filter-sim').checked;
+      const nb = selectedNode !== null ? (graphSim.adj.get(selectedNode) || new Set()) : null;
+      let activeChanged = false;
+
+      graphSim.linkEls.forEach(({ edge, line }) => {
+        const visible = edge.type === 'link' ? showLink : edge.type === 'tag' ? showTag : showSim;
+        if (edge.active !== visible) { edge.active = visible; activeChanged = true; }
+        if (!visible) { line.setAttribute('opacity', 0); return; }
+        const style = GRAPH_EDGE_STYLE[edge.type] || GRAPH_EDGE_STYLE.sim;
+        let opacity = style.opacity;
+        if (selectedNode !== null) {
+          opacity = (edge.source === selectedNode || edge.target === selectedNode) ? 1 : 0.06;
+        }
+        line.setAttribute('opacity', opacity);
+      });
+
+      graphSim.nodeEls.forEach(({ n, circle, label }) => {
+        const isNeighbor = nb !== null && nb.has(n.id);
+        let opacity = 1, strokeW = 0;
+        if (selectedNode !== null) {
+          if (n.id === selectedNode) { opacity = 1; strokeW = 2.5; }
+          else if (isNeighbor) { opacity = 1; strokeW = 1.5; }
+          else { opacity = 0.15; }
+        }
+        circle.setAttribute('opacity', opacity);
+        circle.setAttribute('stroke', 'var(--text-primary)');
+        circle.setAttribute('stroke-width', strokeW);
+        label.style.display = graphSim.labelShouldShow(n) ? '' : 'none';
+      });
+
+      // Al prender/apagar tipos de arista, las fuerzas cambian: reacomodar.
+      if (activeChanged && graphSim.wake) graphSim.wake();
+    }
+
+    function showGraphInfo(nodeId) {
+      if (!graphData) return;
+      const n = graphData.nodes.find(x => x.id === nodeId);
+      if (!n) return;
+      const panel = $('graph-info');
+      const neighbors = graphData.edges
+        .filter(e => e.source === nodeId || e.target === nodeId)
+        .map(e => {
+          const oid = e.source === nodeId ? e.target : e.source;
+          const on = graphData.nodes.find(x => x.id === oid);
+          return { title: on ? on.title : '?', type: e.type, weight: e.weight };
+        });
+
+      panel.style.display = 'block';
+      $('gi-title').textContent = n.title;
+      const tagsHtml = (n.tags || []).map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('');
+      const linksHtml = (n.links || []).map(l => `<span class="link-chip">${escapeHtml(typeof l === 'string' ? l : l.resource || l)}</span>`).join('');
+      $('gi-meta').innerHTML = `
+        <b>Bundle:</b> ${escapeHtml(n.bundle)}<br>
+        <b>Tipo:</b> ${n.article_type || 'article'}<br>
+        <b>Chunks:</b> ${n.chunks}<br>
+        <b>Conexiones:</b> ${n.degree}<br>
+        ${tagsHtml ? '<b>Tags:</b> ' + tagsHtml + '<br>' : ''}
+        ${linksHtml ? '<b>Links:</b> ' + linksHtml + '<br>' : ''}
+        <br><b>Vecinos (${neighbors.length}):</b><br>
+        ${neighbors.slice(0, 10).map(v => `· <span style="color:${v.type==='link'?'var(--text-primary)':v.type==='tag'?'var(--text-tertiary)':'var(--text-muted)'}">${escapeHtml(v.title)}</span> <span style="font-size:9px;color:var(--text-muted)">${v.type} ${v.weight.toFixed(2)}</span>`).join('<br>')}
+        ${neighbors.length > 10 ? '<span style="color:var(--text-muted)">... y ' + (neighbors.length - 10) + ' mas</span>' : ''}
+      `;
+    }
+    window.closeGraphInfo = function() {
+      selectedNode = null;
+      $('graph-info').style.display = 'none';
+      applyGraphFilters();
+    };
+
+    // Links / Tags / Labels se filtran en el cliente; "Similitud" pide al
+    // backend que calcule (o no) esas aristas, así que recarga el grafo.
+    ['g-filter-link','g-filter-tag','g-show-labels'].forEach(id => {
+      $(id).addEventListener('change', applyGraphFilters);
+    });
+    $('g-filter-sim').addEventListener('change', () => { selectedNode = null; closeGraphInfo(); refreshGraph(); });
+    $('btn-graph-refresh').addEventListener('click', () => { selectedNode = null; closeGraphInfo(); refreshGraph(); });
+
+    async function refreshMap() {
+      // Se clona el <svg> para descartar los listeners (rueda/arrastre) de la carga anterior.
+      const oldMapSvg = $('map-svg');
+      const svg = oldMapSvg.cloneNode(false);
+      oldMapSvg.replaceWith(svg);
+      $('map-legend').innerHTML = '';
+
+      const query = $('map-query').value.trim();
+      const bundle = $('map-bundle').value;
+      const raw = await AME.call('rag_similarity_map', JSON.stringify({ query, bundle: bundle || undefined }));
+      let data;
+      let failMsg = null;
+      try { data = JSON.parse(raw); } catch (e) {
+        data = { points: [] };
+        failMsg = String(raw || '').slice(0, 160) || 'respuesta vacia del plugin';
+        console.error('[RAG] rag_similarity_map devolvio algo no-JSON:', raw);
+      }
+
+      if (!data.points || !data.points.length) {
+        const t = svgEl('text', { x: 450, y: 240, 'text-anchor': 'middle', fill: 'var(--text-muted)', 'font-size': 13 });
+        t.textContent = failMsg
+          ? 'No se pudo generar el mapa: ' + failMsg
+          : 'Ingesta al menos un documento para ver el mapa.';
+        svg.appendChild(t);
+        return;
+      }
+
+      const W = 900, H = 480, PAD = 40;
+      const allX = data.points.map(p => p.x).concat(data.query ? [data.query.x] : []);
+      const allY = data.points.map(p => p.y).concat(data.query ? [data.query.y] : []);
+      const minX = Math.min(...allX), maxX = Math.max(...allX);
+      const minY = Math.min(...allY), maxY = Math.max(...allY);
+      const sx = x => PAD + (maxX > minX ? (x - minX) / (maxX - minX) : 0.5) * (W - 2 * PAD);
+      const sy = y => PAD + (maxY > minY ? (y - minY) / (maxY - minY) : 0.5) * (H - 2 * PAD);
+
+      const viewport = svgEl('g', { class: 'map-viewport' });
+      svg.appendChild(viewport);
+      const retrieved = new Set(data.retrieved_ids || []);
+
+      // Zonas de similitud: k-means sobre las coordenadas ya proyectadas
+      // (semilla fija -> mismo resultado en cada recarga). Con un solo bundle
+      // el color indica la zona; con varios se mantiene el color por bundle.
+      const multiBundle = new Set(data.points.map(p => p.bundle_idx || 0)).size > 1;
+      const pts = data.points.map(p => ({ p, px: sx(p.x), py: sy(p.y), c: 0 }));
+      const K = Math.max(1, Math.min(12, Math.round(Math.sqrt(pts.length / 3))));
+      let seed = 12345;
+      const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+      const cent = [];
+      { // k-means++
+        const first = pts[Math.floor(rnd() * pts.length)];
+        cent.push([first.px, first.py]);
+        const d2 = new Float64Array(pts.length).fill(Infinity);
+        while (cent.length < K) {
+          const last = cent[cent.length - 1];
+          let sum = 0;
+          pts.forEach((q, i) => {
+            const d = (q.px - last[0]) ** 2 + (q.py - last[1]) ** 2;
+            if (d < d2[i]) d2[i] = d;
+            sum += d2[i];
+          });
+          let r = rnd() * sum, pick = 0;
+          for (let i = 0; i < pts.length; i++) { r -= d2[i]; if (r <= 0) { pick = i; break; } }
+          cent.push([pts[pick].px, pts[pick].py]);
+        }
+      }
+      for (let it = 0; it < 20; it++) {
+        let moved = false;
+        pts.forEach(q => {
+          let best = 0, bd = Infinity;
+          for (let k = 0; k < cent.length; k++) {
+            const d = (q.px - cent[k][0]) ** 2 + (q.py - cent[k][1]) ** 2;
+            if (d < bd) { bd = d; best = k; }
+          }
+          if (best !== q.c) { q.c = best; moved = true; }
+        });
+        const sums = cent.map(() => [0, 0, 0]);
+        pts.forEach(q => { const a = sums[q.c]; a[0] += q.px; a[1] += q.py; a[2]++; });
+        sums.forEach((a, k) => { if (a[2]) cent[k] = [a[0] / a[2], a[1] / a[2]]; });
+        if (!moved) break;
+      }
+      const zoneSize = new Array(cent.length).fill(0);
+      pts.forEach(q => zoneSize[q.c]++);
+      const zoneRank = new Map(zoneSize.map((n, k) => [k, n]).sort((a, b) => b[1] - a[1]).map(([k], i) => [k, i]));
+      const zoneColor = k => `hsl(${(zoneRank.get(k) * 137.5) % 360}, 65%, 62%)`;
+
+      pts.forEach(({ p, px: cx, py: cy, c }) => {
+        const color = multiBundle ? bundleColor(p.bundle_idx || 0) : zoneColor(c);
+        const highlighted = retrieved.has(p.id);
+        if (highlighted) {
+          viewport.appendChild(svgEl('circle', {
+            cx, cy, r: 10, fill: 'none', stroke: 'var(--chart-1)', 'stroke-width': 2, 'stroke-opacity': 0.9,
+          }));
+        }
+        const baseR = highlighted ? 5.5 : 3.5;
+        const circle = svgEl('circle', {
+          class: 'map-pt', 'data-r': baseR, cx, cy, r: baseR, fill: color, 'fill-opacity': highlighted ? 1 : 0.65,
+        });
+        const title = svgEl('title', {});
+        title.textContent = p.doc_title + ': ' + p.text;
+        circle.appendChild(title);
+        viewport.appendChild(circle);
+      });
+
+      // Labels: una por zona. El título elegido es el más DISTINTIVO de la
+      // zona: puntúa count * (count / total del documento), o sea domina la
+      // zona (count) y además se concentra ahí (count / total), así un
+      // documento largo no gana solo por tener muchos fragmentos. No se
+      // repite título entre zonas mientras haya alternativa. Si dos labels
+      // se pisan, se desplaza el menor en vertical y, si no hay lugar, se omite.
+      const labelsG = svgEl('g', { class: 'map-labels', 'pointer-events': 'none' });
+      const docTotal = new Map();
+      pts.forEach(q => docTotal.set(q.p.doc_title, (docTotal.get(q.p.doc_title) || 0) + 1));
+      const med = arr => { const a2 = arr.slice().sort((x, y) => x - y); return a2[Math.floor(a2.length / 2)]; };
+      const usedTitles = new Set();
+      const placed = [];
+      const LH = 14;
+      [...zoneRank.entries()].sort((a, b) => a[1] - b[1]).forEach(([k]) => {
+        const members = pts.filter(q => q.c === k);
+        if (members.length < 3) return;
+        const counts = new Map();
+        members.forEach(q => counts.set(q.p.doc_title, (counts.get(q.p.doc_title) || 0) + 1));
+        const ranked = [...counts.entries()]
+          .map(([t, c]) => [t, c * (c / docTotal.get(t))])
+          .sort((x, y) => y[1] - x[1]);
+        const pickT = (ranked.find(([t]) => !usedTitles.has(t)) || ranked[0])[0];
+        usedTitles.add(pickT);
+        const text = pickT.length > 28 ? pickT.slice(0, 27) + '…' : pickT;
+        const w = text.length * 6.4 + 8;
+        const x = Math.min(W - w / 2 - 4, Math.max(w / 2 + 4, med(members.map(q => q.px))));
+        const y0 = med(members.map(q => q.py));
+        const hits = yy => placed.some(r => Math.abs(r.x - x) < (r.w + w) / 2 && Math.abs(r.y - yy) < LH);
+        let y = null;
+        for (const dy of [0, LH, -LH, 2 * LH, -2 * LH]) {
+          if (!hits(y0 + dy)) { y = y0 + dy; break; }
+        }
+        if (y === null) return;
+        placed.push({ x, y, w });
+        const t = svgEl('text', {
+          x, y, 'text-anchor': 'middle', fill: 'var(--text-primary)', 'font-size': 11, 'font-weight': 600,
+          stroke: 'var(--bg-base)', 'stroke-width': 3, 'paint-order': 'stroke', 'stroke-linejoin': 'round',
+        });
+        t.textContent = text;
+        labelsG.appendChild(t);
+      });
+      labelsG.style.display = $('m-show-labels').checked ? '' : 'none';
+      viewport.appendChild(labelsG);
+
+      if (data.query) {
+        const qx = sx(data.query.x), qy = sy(data.query.y);
+        const d = 8;
+        const diamond = svgEl('polygon', {
+          points: `${qx},${qy - d} ${qx + d},${qy} ${qx},${qy + d} ${qx - d},${qy}`,
+          fill: '#ffffff', stroke: 'var(--text-primary)', 'stroke-width': 1.5,
+        });
+        const title = svgEl('title', {});
+        title.textContent = 'Consulta: ' + data.query_text;
+        diamond.appendChild(title);
+        viewport.appendChild(diamond);
+      }
+
+      // Zoom con la rueda (centrado en el cursor), arrastre para mover y
+      // doble clic para reiniciar. Puntos y labels mantienen un tamaño
+      // razonable en pantalla al acercar.
+      const view = { x: 0, y: 0, k: 1 };
+      let raf = 0;
+      const applyView = () => {
+        viewport.setAttribute('transform', `translate(${view.x},${view.y}) scale(${view.k})`);
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const pk = Math.sqrt(view.k);
+          viewport.querySelectorAll('.map-pt').forEach(c => c.setAttribute('r', (+c.dataset.r) / pk));
+          labelsG.querySelectorAll('text').forEach(t => {
+            t.setAttribute('font-size', 11 / view.k);
+            t.setAttribute('stroke-width', 3 / view.k);
+          });
+        });
+      };
+      const toView = ev => {
+        const rect = svg.getBoundingClientRect();
+        const sc = Math.min(rect.width / W, rect.height / H) || 1;
+        const ox = (rect.width - W * sc) / 2, oy = (rect.height - H * sc) / 2;
+        return { x: (ev.clientX - rect.left - ox) / sc, y: (ev.clientY - rect.top - oy) / sc, sc };
+      };
+      svg.addEventListener('wheel', ev => {
+        ev.preventDefault();
+        const m = toView(ev);
+        const newK = Math.min(14, Math.max(0.8, view.k * (ev.deltaY < 0 ? 1.15 : 1 / 1.15)));
+        view.x = m.x - (m.x - view.x) * (newK / view.k);
+        view.y = m.y - (m.y - view.y) * (newK / view.k);
+        view.k = newK;
+        applyView();
+      }, { passive: false });
+      let drag = null;
+      svg.addEventListener('pointerdown', ev => {
+        drag = { cx: ev.clientX, cy: ev.clientY, vx: view.x, vy: view.y, sc: toView(ev).sc };
+        svg.setPointerCapture(ev.pointerId);
+      });
+      svg.addEventListener('pointermove', ev => {
+        if (!drag) return;
+        view.x = drag.vx + (ev.clientX - drag.cx) / drag.sc;
+        view.y = drag.vy + (ev.clientY - drag.cy) / drag.sc;
+        applyView();
+      });
+      const endDrag = () => { drag = null; };
+      svg.addEventListener('pointerup', endDrag);
+      svg.addEventListener('pointercancel', endDrag);
+      svg.addEventListener('dblclick', () => { view.x = 0; view.y = 0; view.k = 1; applyView(); });
+
+      // Leyenda por bundle (no por documento: con miles de fragmentos era
+      // una lista interminable de puntos del mismo color).
+      const seenBundles = new Map();
+      data.points.forEach(p => {
+        if (!seenBundles.has(p.bundle_idx || 0)) seenBundles.set(p.bundle_idx || 0, p.bundle);
+      });
+      const mapLegend = $('map-legend');
+      if (seenBundles.size > 1) {
+        [...seenBundles.entries()].sort((x, y) => x[0] - y[0]).forEach(([idx, name]) => {
+          const item = document.createElement('div');
+          item.className = 'legend-item';
+          item.innerHTML = `<span class="legend-dot" style="background:${bundleColor(idx)}"></span>${escapeHtml(name)}`;
+          mapLegend.appendChild(item);
+        });
+      } else {
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.textContent = 'color = zona de similitud (fragmentos cercanos entre sí) · pasa el cursor para ver el documento';
+        mapLegend.appendChild(item);
+      }
+      if (data.query) {
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.innerHTML = '<span class="legend-dot" style="background:#fff;border:1.5px solid var(--text-primary)"></span>consulta (rombo) / resultado recuperado (anillo)';
+        $('map-legend').appendChild(item);
+      }
+    }
+    $('m-show-labels').addEventListener('change', () => {
+      const g = $('map-svg').querySelector('.map-labels');
+      if (g) g.style.display = $('m-show-labels').checked ? '' : 'none';
+    });
+    $('btn-map-refresh').addEventListener('click', refreshMap);
+    $('map-query').addEventListener('keydown', e => { if (e.key === 'Enter') refreshMap(); });
+
+    function fmtEta(sec) {
+      if (sec == null || sec < 0) return '';
+      if (sec < 60) return `${Math.round(sec)}s`;
+      const m = Math.floor(sec / 60), s = Math.round(sec % 60);
+      if (m < 60) return `${m}m ${s}s`;
+      const h = Math.floor(m / 60);
+      return `${h}h ${m % 60}m`;
+    }
+
+    function pollJobStatus(statusId, btn) {
+      const timer = setInterval(async () => {
+        const raw = await AME.call('rag_job_status', '');
+        let st;
+        try { st = JSON.parse(raw); } catch (e) { return; }
+        if (st.running) {
+          const total = st.documents_total ? ` / ${st.documents_total}` : '';
+          const rate = st.rate_per_second != null ? ` — ${st.rate_per_second} doc/s` : '';
+          const eta = st.eta_seconds != null ? ` — ETA ${fmtEta(st.eta_seconds)}` : '';
+          setStatus(statusId, `${st.running}... ${st.documents_processed}${total} documento(s)${rate}${eta}`);
+        } else {
+          clearInterval(timer);
+          btn.disabled = false;
+          const result = st.last_result || '[x] No se pudo obtener el resultado.';
+          setStatus(statusId, result, result.startsWith('[x]') ? 'error' : 'ok');
+          refreshHero();
+        }
+      }, 1000);
+    }
+
+    $('btn-reindex').addEventListener('click', async () => {
+      const bundle = $('admin-reindex-bundle').value;
+      const btn = $('btn-reindex');
+      btn.disabled = true;
+      setStatus('status-reindex', 'Iniciando reindex de ' + bundle + '...');
+      const ack = await AME.call('rag_reindex', bundle);
+      if (ack.startsWith('[x]') || ack.startsWith('[i]')) {
+        btn.disabled = false;
+        setStatus('status-reindex', ack, ack.startsWith('[x]') ? 'error' : 'warn');
+        return;
+      }
+      pollJobStatus('status-reindex', btn);
+    });
+
+    $('btn-rebuild').addEventListener('click', async () => {
+      if (!(await customConfirm('Borrar TODO el indice SQLite y reconstruir desde los archivos OKF?\n\nEsto es seguro: el .sqlite3 es derived data.'))) return;
+      const btn = $('btn-rebuild');
+      btn.disabled = true;
+      setStatus('status-rebuild', 'Iniciando reconstruccion...');
+      const ack = await AME.call('rag_rebuild_index', '');
+      if (ack.startsWith('[x]') || ack.startsWith('[i]')) {
+        btn.disabled = false;
+        setStatus('status-rebuild', ack, ack.startsWith('[x]') ? 'error' : 'warn');
+        return;
+      }
+      pollJobStatus('status-rebuild', btn);
+    });
+
+    function fmtBytes(n) {
+      if (n == null) return '?';
+      const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+      let i = 0;
+      while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
+      return `${n.toFixed(1)} ${units[i]}`;
+    }
+
+    $('btn-db-stats').addEventListener('click', async () => {
+      setStatus('status-db-stats', 'Calculando...');
+      const raw = await AME.call('rag_db_stats', '');
+      let st;
+      try { st = JSON.parse(raw); } catch (e) { setStatus('status-db-stats', raw, 'error'); return; }
+      setStatus('status-db-stats',
+        `SQLite: ${fmtBytes(st.total_bytes)} (reciclable: ${fmtBytes(st.reclaimable_bytes)}, ${st.reclaimable_pct}%) · Vectores: ${fmtBytes(st.vec_index_bytes)} (${st.vectors_in_index} en el indice) · ${st.documents} documentos, ${st.chunks} fragmentos`);
+    });
+
+    $('btn-checkpoint').addEventListener('click', async () => {
+      setStatus('status-vacuum', 'Haciendo checkpoint...');
+      const result = await AME.call('rag_wal_checkpoint', '');
+      setStatus('status-vacuum', result, result.startsWith('[x]') ? 'error' : 'ok');
+    });
+
+    $('btn-vacuum').addEventListener('click', async () => {
+      if (!(await customConfirm('VACUUM reconstruye el .sqlite3 entero para sacar el espacio libre sobrante.\n\nPuede tardar bastante en un archivo grande, y necesita mas o menos el mismo espacio libre en disco que el tamano actual del archivo mientras corre.\n\nContinuar?'))) return;
+      const btn = $('btn-vacuum');
+      btn.disabled = true;
+      setStatus('status-vacuum', 'Iniciando VACUUM...');
+      const ack = await AME.call('rag_vacuum', '');
+      if (ack.startsWith('[x]') || ack.startsWith('[i]')) {
+        btn.disabled = false;
+        setStatus('status-vacuum', ack, ack.startsWith('[x]') ? 'error' : 'warn');
+        return;
+      }
+      pollJobStatus('status-vacuum', btn);
+    });
+
+    $('btn-status').addEventListener('click', async () => {
+      const stats = await refreshHero();
+      const { bundles, loading } = await fetchBundles();
+      const bundlesTxt = loading ? '(cargando...)' : (bundles.join(', ') || '(ninguno)');
+      setStatus('status-sys', `Bundles: ${bundlesTxt} · Documentos: ${stats.documents} · Fragmentos: ${stats.chunks}`);
+    });
+
+    refreshHero();
+    refreshBundleSelects();
+    </script>
+  </body>
+</html>
